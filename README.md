@@ -1,3 +1,7 @@
+> **Note to Syngenta Developers**
+> 
+> This repository is a fork of the original `FFmpegKit` project, which has been officially deprecated and scheduled for removal. The original author recommended building it ourselves if we still needed it. Given that we don't know how long the source will remain available, we forked this repository to preserve a stable and future-proof copy. This ensures we can continue compiling and maintaining it internally without relying on external hosting services that may go offline.
+
 # FFmpegKit ![GitHub release](https://img.shields.io/badge/release-v6.0-blue.svg) ![Maven Central](https://img.shields.io/maven-central/v/com.arthenica/ffmpeg-kit-min) ![CocoaPods](https://img.shields.io/cocoapods/v/ffmpeg-kit-ios-min) ![pub](https://img.shields.io/pub/v/ffmpeg_kit_flutter.svg) ![npm](https://img.shields.io/npm/v/ffmpeg-kit-react-native.svg)
 
 ## Notice
