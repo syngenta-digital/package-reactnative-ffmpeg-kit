@@ -36,11 +36,10 @@ jobs:
             curl -F package=@$(ls react-native/*.tgz) https://${FURY_PUSH_TOKEN}@push.fury.io/syngenta-digital/
 
 workflows:
-  version: 2
   build-and-deploy:
     jobs:
       - build-package:
           filters:
             branches:
               only:
-                - master
+                - main
