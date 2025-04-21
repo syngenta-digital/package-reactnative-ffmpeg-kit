@@ -1,0 +1,46 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: cimg/node:20.10.0
+    working_directory: ~/project
+
+commands:
+  npm-setup:
+    steps:
+      - run:
+          name: Login into GemFury
+          command: echo "//npm.fury.io/syngenta-digital/:_authToken=${FURY_AUTH}" > ~/project/.npmrc
+      - run:
+          name: Configure npm Registry
+          command: npm config set registry https://npm.fury.io/syngenta-digital/
+
+jobs:
+  build-package:
+    executor: default
+    steps:
+      - checkout
+      - npm-setup
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - run:
+          name: Build package
+          command: |
+            cd react-native
+            npm pack
+      - run:
+          name: Upload to GemFury
+          command: |
+            curl -F package=@$(ls react-native/*.tgz) https://${FURY_PUSH_TOKEN}@push.fury.io/syngenta-digital/
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build-package:
+          filters:
+            branches:
+              only:
+                - master
