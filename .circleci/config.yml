@@ -39,6 +39,8 @@ workflows:
   build-and-deploy:
     jobs:
       - build-package:
+          context:
+            - shared-gemfury-tokens
           filters:
             branches:
               only:
